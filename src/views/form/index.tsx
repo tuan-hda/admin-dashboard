@@ -1,9 +1,8 @@
 import { Box } from "@mui/system";
 import * as yup from "yup";
-import { TextField, useMediaQuery, useTheme } from "@mui/material";
+import { Button, TextField, useMediaQuery } from "@mui/material";
 import Header from "../../components/Header";
 import { Formik } from "formik";
-import { tokens } from "../../theme";
 
 const initialValues = {
   firstName: "",
@@ -30,8 +29,6 @@ const userSchema = yup.object().shape({
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const handleFormSubmit = (values: Object) => {
     console.log(values);
   };
@@ -54,6 +51,7 @@ const Form = () => {
             >
               <TextField
                 fullWidth
+                color='secondary'
                 type='text'
                 label='First Name'
                 onBlur={handleBlur}
@@ -64,16 +62,89 @@ const Form = () => {
                 helperText={touched.firstName && errors.firstName}
                 sx={{
                   gridColumn: "span 2",
-                  "& .Mui-focused.MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: !errors.firstName ? colors.grey[200] : undefined,
-                    },
-                  },
-                  "& label.Mui-focused": {
-                    color: colors.grey[200],
-                  },
                 }}
               />
+              <TextField
+                fullWidth
+                color='secondary'
+                type='text'
+                label='Last Name'
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.lastName}
+                name='lastName'
+                error={!!touched.lastName && !!errors.lastName}
+                helperText={touched.lastName && errors.lastName}
+                sx={{
+                  gridColumn: "span 2",
+                }}
+              />
+              <TextField
+                fullWidth
+                color='secondary'
+                type='text'
+                label='Email'
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.email}
+                name='email'
+                error={!!touched.email && !!errors.email}
+                helperText={touched.email && errors.email}
+                sx={{
+                  gridColumn: "span 4",
+                }}
+              />
+              <TextField
+                fullWidth
+                color='secondary'
+                type='text'
+                label='Contact Number'
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.contact}
+                name='contact'
+                error={!!touched.contact && !!errors.contact}
+                helperText={touched.contact && errors.contact}
+                sx={{
+                  gridColumn: "span 4",
+                }}
+              />
+              <TextField
+                fullWidth
+                color='secondary'
+                type='text'
+                label='Address 1'
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address1}
+                name='address1'
+                error={!!touched.address1 && !!errors.address1}
+                helperText={touched.address1 && errors.address1}
+                sx={{
+                  gridColumn: "span 4",
+                }}
+              />
+              <TextField
+                fullWidth
+                color='secondary'
+                type='text'
+                label='Address 2'
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address2}
+                name='address2'
+                error={!!touched.address2 && !!errors.address2}
+                helperText={touched.address2 && errors.address2}
+                sx={{
+                  gridColumn: "span 4",
+                }}
+              />
+            </Box>
+
+            <Box display='flex' justifyContent='end' mt='20px'>
+              <Button type='submit' color='secondary' variant='contained'>
+                Create New User
+              </Button>
             </Box>
           </form>
         )}
